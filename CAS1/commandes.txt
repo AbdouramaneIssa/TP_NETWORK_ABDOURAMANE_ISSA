@@ -1,0 +1,9 @@
+docker network create custom_network
+docker network ls
+docker run -d --name cont1 --network custom_network busybox sleep 3600
+docker run -d --name cont2 --network custom_network busybox sleep 3600
+docker ps
+docker exec cont1 ping -c 2 cont2
+docker rm -f cont1 cont2
+docker network rm custom_network
+docker network ls

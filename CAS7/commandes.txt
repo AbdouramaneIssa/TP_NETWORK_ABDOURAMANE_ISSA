@@ -1,0 +1,9 @@
+# Cas 7 : Utilisation de Docker Compose pour les réseaux
+créer le composer.yml
+docker-compose up -d
+docker ps
+docker network ls
+docker exec cas7_web_1 ping -c 2 db
+docker-compose down
+docker ps -a
+docker network ls

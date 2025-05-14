@@ -1,0 +1,15 @@
+# Cas 6 : Réseau multi-hôtes avec Docker Swarm
+docker swarm init
+docker info --format '{{.Swarm.LocalNodeState}}'
+docker network create --driver overlay --attachable swarm_net
+docker network ls
+docker run -d --name node1 --network swarm_net busybox sleep 3600
+docker run -d --name node2 --network swarm_net busybox sleep 3600
+docker ps
+docker exec node1 ping -c 2 node2
+docker rm -f node1 node2
+docker network rm swarm_net
+docker swarm leave --force
+docker network ls
+docker ps -a
+docker info --format '{{.Swarm.LocalNodeState}}'

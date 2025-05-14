@@ -1,0 +1,4 @@
+# Exercice 2.3 : Nettoyage des volumes
+docker volume ls
+docker volume prune
+docker volume ls

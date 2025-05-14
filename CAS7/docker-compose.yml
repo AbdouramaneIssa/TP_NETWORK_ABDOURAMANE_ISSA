@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    image: nginx
+    networks:
+      - front_net
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    networks:
+      - back_net
+networks:
+  front_net:
+  back_net:

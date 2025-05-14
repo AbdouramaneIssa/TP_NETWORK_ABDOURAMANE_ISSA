@@ -1,0 +1,12 @@
+# Cas 4 : Utilisation des alias DNS
+docker network create dns_network
+docker network ls
+docker run -d --name dns1 --network dns_network --network-alias=app1 busybox sleep 3600
+docker run -d --name dns2 --network dns_network --network-alias=app2 busybox sleep 3600
+docker ps
+docker exec dns1 ping -c 2 app2
+docker exec dns2 ping -c 2 app1
+docker rm -f dns1 dns2
+docker network rm dns_network
+docker network ls
+docker ps -a

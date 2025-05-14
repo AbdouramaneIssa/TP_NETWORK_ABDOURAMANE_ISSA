@@ -1,0 +1,15 @@
+# Exercice 2.2 : Utilisation des volumes avec des bases de données
+docker volume create db_data
+docker volume ls
+docker run -d --name mysql_test -v db_data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 mysql
+docker ps
+docker logs mysql_test
+docker exec mysql_test mysql -uroot -p1234 -e "CREATE DATABASE test_db;"
+docker exec mysql_test mysql -uroot -p1234 -e "SHOW DATABASES;"
+docker rm -f mysql_test
+docker run -d --name mysql_test2 -v db_data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 mysql
+docker exec mysql_test2 mysql -uroot -p1234 -e "SHOW DATABASES;"
+docker rm -f mysql_test2
+docker volume rm db_data
+docker volume ls
+docker ps -a

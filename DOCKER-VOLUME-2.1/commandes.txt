@@ -1,0 +1,14 @@
+# Exercice 2.1 : Création d'un volume nommé
+docker volume create data_volume
+docker volume ls
+docker run -d --name nginx_test -v data_volume:/etc/nginx nginx
+docker ps
+docker inspect nginx_test
+docker exec nginx_test sh -c "echo 'server { listen 8080; }' > /etc/nginx/conf.d/test.conf"
+docker rm -f nginx_test
+docker run -d --name nginx_test2 -v data_volume:/etc/nginx nginx
+docker exec nginx_test2 cat /etc/nginx/conf.d/test.conf
+docker rm -f nginx_test2
+docker volume rm data_volume
+docker volume ls
+docker ps -a

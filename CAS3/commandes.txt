@@ -1,0 +1,15 @@
+# Cas 3 : Routage entre réseaux
+docker network create frontend
+docker network create backend
+docker network ls
+docker run -d --name front --network frontend busybox sleep 3600
+docker run -d --name back --network backend busybox sleep 3600
+docker ps
+docker network connect backend front
+docker network inspect backend
+docker exec front ping -c 2 back
+docker exec back ping -c 2 front
+docker rm -f front back
+docker network rm frontend backend
+docker network ls
+docker ps -a

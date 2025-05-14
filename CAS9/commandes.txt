@@ -1,0 +1,11 @@
+# Cas 9 : Limitation de la bande passante
+docker network create bandwidth_net
+docker network ls
+docker run -d --name iperf_server --network bandwidth_net -p 5201:5201 networkstatic/iperf3 -s
+docker run -d --name iperf_client --network bandwidth_net networkstatic/iperf3 -c iperf_server
+docker ps
+docker logs iperf_client
+docker rm -f iperf_server iperf_client
+docker network rm bandwidth_net
+docker network ls
+docker ps -a

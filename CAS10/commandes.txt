@@ -1,0 +1,4 @@
+# Cas 10 : Nettoyage complet des réseaux Docker
+docker network ls
+docker network prune
+docker network ls
